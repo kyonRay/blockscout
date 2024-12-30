@@ -78,7 +78,7 @@ defmodule Explorer.Chain.Address.Schema do
         field(:fetched_coin_balance, Wei)
         field(:fetched_coin_balance_block_number, :integer) :: Block.block_number() | nil
         field(:contract_code, Data)
-        field(:nonce, :integer)
+        field(:nonce, :decimal)
         field(:decompiled, :boolean, default: false)
         field(:verified, :boolean, default: false)
         field(:has_decompiled_code?, :boolean, virtual: true)
