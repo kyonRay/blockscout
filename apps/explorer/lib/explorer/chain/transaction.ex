@@ -215,7 +215,7 @@ defmodule Explorer.Chain.Transaction.Schema do
         field(:index, :integer)
         field(:created_contract_code_indexed_at, :utc_datetime_usec)
         field(:input, Data)
-        field(:nonce, :integer) :: non_neg_integer() | nil
+        field(:nonce, :decimal) :: non_neg_integer() | nil
         field(:r, :decimal)
         field(:s, :decimal)
         field(:status, Status)

@@ -1,23 +1,13 @@
 defmodule Explorer.Repo.Migrations.ChangeNonceToBigint do
   use Ecto.Migration
 
-  def up do
+  def change do
     alter table(:transactions) do
-      modify(:nonce, :bigint)
+      modify(:nonce, :decimal, precision: 100, null: true)
     end
 
     alter table(:addresses) do
-      modify(:nonce, :bigint)
-    end
-  end
-
-  def down do
-    alter table(:transactions) do
-      modify(:nonce, :integer)
-    end
-
-    alter table(:addresses) do
-      modify(:nonce, :integer)
+      modify(:nonce, :decimal, precision: 100, null: true)
     end
   end
 end
