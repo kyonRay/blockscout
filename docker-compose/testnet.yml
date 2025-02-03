@@ -1,4 +1,5 @@
 version: '3.9'
+name: blockscout-backend
 
 services:
   redis-db:
@@ -26,12 +27,25 @@ services:
     extends:
       file: ./services/backend.yml
       service: backend
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      args:
+        CACHE_EXCHANGE_RATES_PERIOD: ""
+        API_V1_READ_METHODS_DISABLED: "false"
+        DISABLE_WEBAPP: "false"
+        API_V1_WRITE_METHODS_DISABLED: "false"
+        CACHE_TOTAL_GAS_USAGE_COUNTER_ENABLED: ""
+        CACHE_ADDRESS_WITH_BALANCES_UPDATE_INTERVAL: ""
+        ADMIN_PANEL_ENABLED: ""
+        RELEASE_VERSION: 6.9.2
     links:
       - db:database
     environment:
         ETHEREUM_JSONRPC_HTTP_URL: https://rpc.eightart.hk
         ETHEREUM_JSONRPC_TRACE_URL: https://rpc.eightart.hk
         CHAIN_ID: '20200'
+        API_V2_ENABLED: 'true'
 
   visualizer:
     extends:

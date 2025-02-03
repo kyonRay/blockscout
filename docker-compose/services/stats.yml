@@ -19,9 +19,9 @@ services:
     container_name: 'stats-db'
     command: postgres -c 'max_connections=200'
     environment:
-        POSTGRES_DB: ${POSTGRES_STATS_DB}
-        POSTGRES_USER: ${POSTGRES_STATS_USER}
-        POSTGRES_PASSWORD: ${POSTGRES_STATS_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_STATS_DB:-}
+        POSTGRES_USER: ${POSTGRES_STATS_USER:-}
+        POSTGRES_PASSWORD: ${POSTGRES_STATS_PASSWORD:-}
     ports:
       - target: 5432
         published: 7433
