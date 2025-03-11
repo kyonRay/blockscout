@@ -1,0 +1,3 @@
+#!/bin/bash
+docker load --input ./${IMAGE_NAME}.tar
+FRONT_PROXY_PASS=http://host.docker.internal:3000 docker compose --env-file ./.env -f ./testnet.yml up --no-build --pull=missing -d
