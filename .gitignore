@@ -66,3 +66,6 @@ dump.rdb
 *.env.local
 *.env.staging
 .devcontainer/.blockscout_config
+
+/package/output/*
+/package/*.tar.gz
