@@ -16,6 +16,8 @@ export POSTGRES_BLOCKSCOUT_USER=blockscout
 export POSTGRES_BLOCKSCOUT_PASSWORD=ceWb1MeLBEeOIfk65gU8EjF8
 export ETHEREUM_JSONRPC_HTTP_URL=https://rpc.eightart.hk
 export ETHEREUM_JSONRPC_TRACE_URL=https://rpc.eightart.hk
+export STATS__DB_URL=postgres://stats:n0uejXPl61ci6ldCuE2gQU5Y@stats-db:5432/stats
+export STATS__BLOCKSCOUT_DB_URL=postgresql://blockscout:ceWb1MeLBEeOIfk65gU8EjF8@db:5432/blockscout
 export CHAIN_ID=20200
 export API_V2_ENABLED=true
 envsubst < .env.template > ./output/.env
