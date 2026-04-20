@@ -1,0 +1,42 @@
+version: '3.9'
+name: blockscout-potos-microservices
+
+services:
+  visualizer:
+    extends:
+      file: ../services/visualizer.yml
+      service: visualizer
+    ports:
+      - target: 8050
+        published: ${VISUALIZER_PORT:-8084}
+
+  sig-provider:
+    extends:
+      file: ../services/sig-provider.yml
+      service: sig-provider
+    ports:
+      - target: 8050
+        published: ${SIG_PROVIDER_PORT:-8083}
+
+  smart-contract-verifier:
+    extends:
+      file: ../services/smart-contract-verifier.yml
+      service: smart-contract-verifier
+    ports:
+      - target: 8050
+        published: ${SCV_PORT:-8082}
+
+  user-ops-indexer:
+    extends:
+      file: ../services/user-ops-indexer.yml
+      service: user-ops-indexer
+    environment:
+      USER_OPS_INDEXER__DATABASE__CONNECT__URL: ${EXTERNAL_DATABASE_URL}
+      USER_OPS_INDEXER__INDEXER__RPC_URL: ${ETHEREUM_JSONRPC_WS_URL:-ws://host.docker.internal:8545/}
+
+  nft_media_handler:
+    extends:
+      file: ../services/nft_media_handler.yml
+      service: nft_media_handler
+    image: ${IMAGE_NAME:-blockscout-potos}:${RELEASE_VERSION:-latest}
+    pull_policy: never

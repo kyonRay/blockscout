@@ -1,0 +1,27 @@
+version: '3.9'
+name: blockscout-potos-frontend
+
+services:
+  frontend:
+    extends:
+      file: ../services/frontend.yml
+      service: frontend
+
+  stats:
+    extends:
+      file: ../services/stats.yml
+      service: stats
+    environment:
+      STATS__DB_URL: ${EXTERNAL_STATS_DB_URL}
+      STATS__BLOCKSCOUT_DB_URL: ${EXTERNAL_DATABASE_URL}
+
+  proxy:
+    depends_on:
+      - frontend
+      - stats
+    extends:
+      file: ../services/nginx.yml
+      service: proxy
+    environment:
+      BACK_PROXY_PASS: ${EXTERNAL_BACKEND_URL}
+      FRONT_PROXY_PASS: ${FRONT_PROXY_PASS:-http://frontend:3000}

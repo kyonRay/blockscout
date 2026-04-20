@@ -1,0 +1,26 @@
+version: '3.9'
+name: blockscout-potos-backend
+
+services:
+  backend:
+    extends:
+      file: ../services/backend.yml
+      service: backend
+    image: ${IMAGE_NAME:-blockscout-potos}:${RELEASE_VERSION:-latest}
+    pull_policy: never
+    build:
+      context: ../..
+      dockerfile: ./docker/Dockerfile
+      args:
+        RELEASE_VERSION: ${RELEASE_VERSION:-9.0.2}
+    environment:
+      DATABASE_URL: ${EXTERNAL_DATABASE_URL}
+      REDIS_URL: ${EXTERNAL_REDIS_URL}
+      ETHEREUM_JSONRPC_HTTP_URL: ${ETHEREUM_JSONRPC_HTTP_URL}
+      ETHEREUM_JSONRPC_TRACE_URL: ${ETHEREUM_JSONRPC_TRACE_URL}
+      ETHEREUM_JSONRPC_WS_URL: ${ETHEREUM_JSONRPC_WS_URL:-}
+      CHAIN_ID: ${CHAIN_ID}
+      DISABLE_INDEXER: ${DISABLE_INDEXER:-false}
+    ports:
+      - target: 4000
+        published: ${BACKEND_PORT:-4000}
