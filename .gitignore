@@ -77,3 +77,9 @@ tasks_in_progress
 /temp
 
 openapi.yaml
+
+# potos packaging
+/package/output/
+/package/output.tar.gz
+/package/*.tar
+/package/deploy.config
