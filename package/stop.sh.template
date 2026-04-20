@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+TIER="${1:-all}"
+
+case "$TIER" in
+  all)           FILE=potos.yml ;;
+  db)            FILE=potos-db.yml ;;
+  backend)       FILE=potos-backend.yml ;;
+  microservices) FILE=potos-microservices.yml ;;
+  frontend)      FILE=potos-frontend.yml ;;
+  *)
+    echo "usage: $0 {all|db|backend|microservices|frontend}" >&2
+    exit 1 ;;
+esac
+
+exec docker compose --env-file ./.env -f "./$FILE" down

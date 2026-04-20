@@ -1,0 +1,36 @@
+# Copy this file to deploy.config and edit before running ./package.sh
+# deploy.config is gitignored.
+
+# ===== Required secrets (must override) =====
+POSTGRES_BLOCKSCOUT_PASSWORD=changeme
+POSTGRES_STATS_PASSWORD=changeme
+
+# ===== Chain RPC endpoints =====
+ETHEREUM_JSONRPC_HTTP_URL=https://rpc.example.com
+ETHEREUM_JSONRPC_TRACE_URL=https://rpc.example.com
+ETHEREUM_JSONRPC_WS_URL=
+CHAIN_ID=20200
+
+# ===== Cross-host connection points — blank for single-host all-in-one =====
+EXTERNAL_DATABASE_URL=
+EXTERNAL_REDIS_URL=
+EXTERNAL_BACKEND_URL=
+EXTERNAL_STATS_DB_URL=
+
+# ===== Defaults (rarely overridden) =====
+IMAGE_NAME=blockscout-potos
+RELEASE_VERSION=latest
+API_V2_ENABLED=true
+
+POSTGRES_BLOCKSCOUT_DB=blockscout
+POSTGRES_BLOCKSCOUT_USER=blockscout
+POSTGRES_STATS_DB=stats
+POSTGRES_STATS_USER=stats
+
+STATS__DB_URL=
+STATS__BLOCKSCOUT_DB_URL=
+
+BACK_PROXY_PASS=http://backend:4000
+FRONT_PROXY_PASS=http://frontend:3000
+
+DISABLE_INDEXER=false
